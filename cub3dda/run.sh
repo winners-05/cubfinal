@@ -1,0 +1,1 @@
+clear && cc -I /usr/local/include main.c map_funct.c utils2.c gnl/get_next_line.c gnl/get_next_line.h gnl/get_next_line_utils.c map_utils.c cub3d.h yssla7o.c raycasting.c read_map_line.c intialize.c  -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -g   && ./a.out
