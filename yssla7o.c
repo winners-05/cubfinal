@@ -6,7 +6,7 @@
 /*   By: sel-fcht <sel-fcht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:20:01 by sel-fcht          #+#    #+#             */
-/*   Updated: 2021/01/31 16:53:34 by sel-fcht         ###   ########.fr       */
+/*   Updated: 2021/02/05 11:53:43 by sel-fcht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void		floor_ceiling(void)
 		while (++j < (int)g_width)
 		{
 			if (i > (int)g_height / 2)
-				my_mlx_pixel_put(&img, j, i, fc);
+				put(&g_img, j, i, fc);
 			else
-				my_mlx_pixel_put(&img, j, i, cc);
+				put(&g_img, j, i, cc);
 		}
 	}
 }
@@ -47,15 +47,16 @@ void		render(void)
 	floor_ceiling();
 	cast_rays();
 	rende_3d();
-	mlx_put_image_to_window(vars.mlx, vars.mlx_wind, img.img, 0, 0);
-	mlx_destroy_image(vars.mlx, img.img);
+	sprite();
+	mlx_put_image_to_window(g_vars.mlx, g_vars.mlx_wind, g_img.img, 0, 0);
+	mlx_destroy_image(g_vars.mlx, g_img.img);
 }
 
 int			play(void)
 {
-	mlx_hook(vars.mlx_wind, 2, 0, key_press, &vars);
+	mlx_hook(g_vars.mlx_wind, 2, 0, key_press, &g_vars);
 	render();
-	mlx_hook(vars.mlx_wind, 3, 0, release, &vars);
-	mlx_hook(vars.mlx_wind, 17, 0, quit, &vars);
+	mlx_hook(g_vars.mlx_wind, 3, 0, release, &g_vars);
+	mlx_hook(g_vars.mlx_wind, 17, 0, quit, &g_vars);
 	return (0);
 }
